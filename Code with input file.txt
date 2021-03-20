@@ -1,0 +1,164 @@
+Innput File: 				
+Number of employees: 4
+
+Goodies and Prices:
+
+Fitbit Plus: 7980
+IPods: 22349
+MI Band: 999
+Cult Pass: 2799
+Macbook Pro: 229900
+Digital Camera: 11101
+Alexa: 9999
+Sandwich Toaster: 2195
+Microwave Oven: 9800
+Scale: 4999
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main()
+{
+
+int goods[] = {7980, 22349, 999, 2799, 229900, 11101, 9999, 2195, 9800, 4999};
+int nem, temp, i, j, k;
+
+for(i=0; i<10; i++)
+{
+for(j=0; j<10; j++)
+{
+if(goods[i] > goods[j])
+{
+temp = goods[i];
+goods[i] = goods[j];
+goods[j] = temp;
+}
+}
+}
+
+cout << "\n Number of Employees: ";
+cin >> nem;
+
+vector <int> vect;
+
+int max = goods[0];
+int min = goods[0];
+int dif = 0, flag = 0, loop = 0;
+
+
+
+for(i=0; i<=10-nem; i++)
+{
+loop = loop + 1;
+max = goods[i];
+min = goods[i];
+flag = 0;
+
+for(j=0, k=i; j<nem; j++, k++)
+{
+
+
+if(goods[k] > max)
+{
+max = goods[k];
+flag = 1;
+}
+
+if(goods[k] < min)
+{
+min = goods[k];
+flag = 1;
+}
+
+if(flag == 1)
+{
+dif = max - min;
+flag = 0;
+}
+}
+
+
+vect.push_back(dif);
+}
+
+int pos = 0;
+min = vect[0];
+
+for(i=0; i<vect.size(); i++)
+{
+if(vect[i] < min)
+{
+min = vect[i];
+pos = i + 1;
+}
+}
+
+
+cout << "\nHere the goodies that are selected for distribution are: " << endl;
+temp = 0;
+
+for(i=0; i<=10-nem; i++)
+{
+temp = temp + 1;
+
+
+if(temp == loop)
+{
+for(j=0, k=i; j<nem; j++, k++)
+{
+switch(goods[k])
+{
+case 999:
+cout << "MI Band: " << goods[k] << endl;
+break;
+
+case 2195:
+cout << "Sandwich Toaster: " << goods[k] << endl;
+break;
+
+case 2799:
+cout << "Cult Pass: " << goods[k] << endl;
+break;
+
+case 4999:
+cout << "Scale: " << goods[k] << endl;
+break;
+
+case 7980:
+cout << "Fitbit Plus: " << goods[k] << endl;
+break;
+
+case 9800:
+cout << "Microwave Oven: " << goods[k] << endl;
+break;
+
+case 9999:
+cout << "Alexa: " << goods[k] << endl;
+break;
+
+case 11101:
+cout << "Digital Camera: " << goods[k] << endl;
+break;
+
+case 22349:
+cout << "IPods: " << goods[k] << endl;
+break;
+
+case 229900:
+cout << "Macbook Pro: " << goods[k] << endl;
+break;
+
+default:
+cout << goods[k] << endl;
+}
+}
+}
+}
+
+cout << "\nAnd the difference between the chosen goodie with highest price and the lowest price is " << min << endl;
+return 0;
+}
+
+
+
